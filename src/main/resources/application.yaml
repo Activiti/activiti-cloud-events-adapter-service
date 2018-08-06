@@ -1,0 +1,27 @@
+messaging:
+   from:
+       rabbitmq:
+           host: localhost
+           port: 5666
+           username: guest
+           password: guest
+           virtualHost: /
+           camelRoute:
+               destinationName: engineEvents
+               fromRoute: rabbitmq:${messaging.from.rabbitmq.camelRoute.destinationName}?exchangeType=topic&autoDelete=false&queue=EventGatewayQueue&routingKey=#
+                # rabbitmq:MyTopicName?connectionFactory=#rabbitmqConnectionFactory&exchangeType=topic&autoDelete=false&queue=EventGatewayQueue&routingKey=#
+   to:
+       activemq:
+           host: localhost
+           port: 5672
+           # Comma separated address. The format is host1:port1,host2:port2
+           #addresses: ${messaging.to.activemq.host}:${messaging.to.activemq.port}
+           url: amqp://${messaging.to.activemq.host}:${messaging.to.activemq.port}
+           #toRoute:
+               #topicName: alfresco.events.allEvents
+               #uri: amqpToConnection:topic:${messaging.to.activemq.toRoute.topicName}
+           username: admin
+           password: admin
+           camelRoute:
+               destinationName: alfresco.events.allEvents
+               toRoute: amqpConnection://topic:${messaging.to.activemq.camelRoute.destinationName}
