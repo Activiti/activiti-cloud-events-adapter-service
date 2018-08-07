@@ -1,0 +1,21 @@
+messaging:
+   from:
+       rabbitmq:
+           host: localhost
+           port: 5666
+           username: guest
+           password: guest
+           virtualHost: /
+           camelRoute:
+               destinationName: engineEvents
+               fromRoute: rabbitmq:${messaging.from.rabbitmq.camelRoute.destinationName}?exchangeType=topic&autoDelete=false&queue=EventGatewayQueue&routingKey=#
+   to:
+       activemq:
+           host: localhost
+           port: 5672
+           url: amqp://${messaging.to.activemq.host}:${messaging.to.activemq.port}
+           username: admin
+           password: admin
+           camelRoute:
+               destinationName: alfresco.events.allEvents
+               toRoute: amqpConnection://topic:${messaging.to.activemq.camelRoute.destinationName}
