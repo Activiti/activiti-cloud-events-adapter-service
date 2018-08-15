@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.activiti.cloud.events.adapter;
+package org.activiti.cloud.events.adapter.streams;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.stream.annotation.Input;
+import org.springframework.messaging.SubscribableChannel;
 
-@SpringBootApplication
-@EnableDiscoveryClient
-public class ActivitiCloudEventsAdapterService {
+/**
+ * @author Jamal Kaabi-Mofrad
+ */
+public interface EventsAdapterConsumerChannel {
 
-    public static void main(String[] args) {
-        SpringApplication.run(ActivitiCloudEventsAdapterService.class, args);
-    }
+    String EVENTS_ADAPTER_CONSUMER = "eventsAdapterConsumer";
 
+    @Input(EVENTS_ADAPTER_CONSUMER)
+    SubscribableChannel eventsAdapterConsumer();
 }

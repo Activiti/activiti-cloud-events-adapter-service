@@ -13,18 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.activiti.cloud.events.adapter;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+package org.activiti.cloud.events.adapter.util;
 
-@SpringBootApplication
-@EnableDiscoveryClient
-public class ActivitiCloudEventsAdapterService {
+import java.util.ArrayList;
+import java.util.List;
 
-    public static void main(String[] args) {
-        SpringApplication.run(ActivitiCloudEventsAdapterService.class, args);
+import org.springframework.jms.annotation.JmsListener;
+import org.springframework.messaging.Message;
+
+/**
+ * @author Jamal Kaabi-Mofrad
+ */
+public class EventReceiverUtil {
+
+    private List<String> events = new ArrayList<>();
+
+    public void reset() {
+        events.clear();
     }
 
+    public List<String> getEvents() {
+        return events;
+    }
+
+    @JmsListener(destination = "${messaging.to.activemq.topicName}")
+    public void receive(final Message message) {
+        events.add((String) message.getPayload());
+    }
 }
