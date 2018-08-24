@@ -17,6 +17,7 @@ package org.activiti.cloud.events.adapter.jms;
 
 import javax.jms.Destination;
 
+import org.activiti.cloud.events.adapter.EventGateway;
 import org.alfresco.event.databind.EventObjectMapperFactory;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQTopic;
@@ -24,6 +25,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.integration.annotation.IntegrationComponentScan;
+import org.springframework.integration.dsl.IntegrationFlow;
+import org.springframework.integration.dsl.IntegrationFlows;
+import org.springframework.integration.jms.dsl.Jms;
 import org.springframework.jms.connection.CachingConnectionFactory;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
@@ -32,11 +37,10 @@ import org.springframework.jms.support.converter.MessageType;
 import org.springframework.util.StringUtils;
 
 /**
- * Auto-configuration of the JMS connection for the target ActiveMQ broker.
- *
- * @author Jamal Kaabi-Mofrad
+ * JMS configuration.
  */
 @Configuration
+@IntegrationComponentScan
 @EnableConfigurationProperties(JmsProperties.class)
 public class JmsConfig {
 
@@ -55,6 +59,14 @@ public class JmsConfig {
         connectionFactory.setPassword(StringUtils.isEmpty(properties.getPassword()) ? null : properties.getPassword());
 
         return new CachingConnectionFactory(connectionFactory);
+    }
+
+    @Bean
+    public IntegrationFlow jmsOutboundFlow() {
+        return IntegrationFlows
+                    .from(EventGateway.EVENTS_ADAPTER_PRODUCER_CHANNEL)
+                    .handle(Jms.outboundAdapter(jmsTemplate()))
+                    .get();
     }
 
     @Bean

@@ -19,7 +19,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicReference;
 
 import org.activiti.cloud.events.adapter.streams.EventsAdapterConsumerChannel;
 import org.activiti.cloud.events.adapter.util.EventReceiverUtil;
@@ -39,9 +38,6 @@ import org.springframework.integration.channel.AbstractMessageChannel;
 import org.springframework.messaging.support.GenericMessage;
 import org.springframework.test.context.junit4.SpringRunner;
 
-/**
- * @author Jamal Kaabi-Mofrad
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ActivitiCloudEventsAdapterTest {
@@ -51,6 +47,7 @@ public class ActivitiCloudEventsAdapterTest {
 
     private static ApplicationContext applicationContext;
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private EventsAdapterConsumerChannel channel;
     @Autowired

@@ -24,9 +24,6 @@ import java.nio.charset.StandardCharsets;
 
 import org.springframework.util.FileCopyUtils;
 
-/**
- * @author Jamal Kaabi-Mofrad
- */
 public class TestUtil
 {
     public static String getResourceFileAsString(String fileName) throws Exception

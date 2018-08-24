@@ -19,10 +19,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * JMS configuration properties.
- *
- * @author Jamal Kaabi-Mofrad
  */
-@ConfigurationProperties(prefix = "messaging.to.activemq")
+@ConfigurationProperties(prefix = "activiti.cloud.events.adapter.topic")
 public class JmsProperties {
 
     private String host;

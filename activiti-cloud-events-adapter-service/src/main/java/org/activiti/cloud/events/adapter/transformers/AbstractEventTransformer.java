@@ -26,9 +26,6 @@ import org.alfresco.event.model.activiti.ActivitiCloudRuntimeResourceV1;
 import org.alfresco.event.model.ResourceV1;
 import org.springframework.beans.factory.annotation.Autowired;
 
-/**
- * @author Jamal Kaabi-Mofrad
- */
 public abstract class AbstractEventTransformer<T extends CloudRuntimeEvent, R extends ResourceV1> implements EventTransformer<T, R> {
 
     @Autowired

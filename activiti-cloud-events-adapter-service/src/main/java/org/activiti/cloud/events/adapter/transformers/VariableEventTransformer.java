@@ -21,9 +21,6 @@ import org.alfresco.event.model.EventV1;
 import org.alfresco.event.model.activiti.VariableResourceV1;
 import org.springframework.stereotype.Component;
 
-/**
- * @author Jamal Kaabi-Mofrad
- */
 @Component
 public class VariableEventTransformer extends AbstractEventTransformer<CloudVariableEvent, VariableResourceV1> {
 
@@ -35,7 +32,7 @@ public class VariableEventTransformer extends AbstractEventTransformer<CloudVari
 
     @Override
     public EventV1<VariableResourceV1> transform(CloudVariableEvent event) {
-        VariableResourceV1<?> resource = new VariableResourceV1(event.getId(), null);
+        VariableResourceV1<?> resource = new VariableResourceV1<>(event.getId(), null);
         setCommonValues(event, resource);
 
         VariableInstance entity = event.getEntity();

@@ -20,9 +20,6 @@ import org.alfresco.event.model.activiti.ActivitiCloudRuntimeResourceV1;
 import org.alfresco.event.model.EventV1;
 import org.springframework.stereotype.Component;
 
-/**
- * @author Jamal Kaabi-Mofrad
- */
 @Component
 public class GenericEventTransformer extends AbstractEventTransformer<CloudRuntimeEvent, ActivitiCloudRuntimeResourceV1> {
 

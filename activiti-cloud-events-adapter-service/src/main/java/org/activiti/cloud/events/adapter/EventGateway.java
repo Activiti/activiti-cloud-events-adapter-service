@@ -13,23 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.activiti.cloud.events.adapter.transformers;
+package org.activiti.cloud.events.adapter;
 
-import org.activiti.runtime.api.event.CloudRuntimeEvent;
 import org.alfresco.event.model.EventV1;
 import org.alfresco.event.model.ResourceV1;
+import org.springframework.integration.annotation.Gateway;
+import org.springframework.integration.annotation.MessagingGateway;
 
-/**
- * Represents a transformer which converts the Activiti cloud runtime event
- * {@link CloudRuntimeEvent} to <i>Public</i> event {@link EventV1}.
- */
-public interface EventTransformer<T extends CloudRuntimeEvent, R extends ResourceV1> {
+@MessagingGateway
+public interface EventGateway {
+    String EVENTS_ADAPTER_PRODUCER_CHANNEL = "eventsAdapterProducerChannel";
 
-    /**
-     * Transforms the Activiti cloud runtime event to <i>Public</i> event.
-     *
-     * @param event the Activiti cloud runtime event
-     * @return the public event
-     */
-    EventV1<R> transform(T event);
+    @Gateway(requestChannel = EVENTS_ADAPTER_PRODUCER_CHANNEL)
+    void send(EventV1<ResourceV1> event);
 }

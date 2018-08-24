@@ -21,9 +21,6 @@ import org.alfresco.event.model.EventV1;
 import org.alfresco.event.model.activiti.TaskCandidateResourceV1;
 import org.springframework.stereotype.Component;
 
-/**
- * @author Jamal Kaabi-Mofrad
- */
 @Component
 public class TaskCandidateUserEventTransformer extends AbstractEventTransformer<CloudTaskCandidateUserEvent, TaskCandidateResourceV1> {
 

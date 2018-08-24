@@ -23,9 +23,6 @@ import org.alfresco.event.model.EventV1;
 import org.alfresco.event.model.activiti.ProcessResourceV1;
 import org.springframework.stereotype.Component;
 
-/**
- * @author Jamal Kaabi-Mofrad
- */
 @Component
 public class ProcessEventTransformer extends AbstractEventTransformer<CloudProcessRuntimeEvent, ProcessResourceV1> {
 
@@ -42,8 +39,7 @@ public class ProcessEventTransformer extends AbstractEventTransformer<CloudProce
         setCommonValues(event, resource);
 
         ProcessInstance entity = event.getEntity();
-        resource.setStatus(entity.getStatus()
-                    .name());
+        resource.setStatus(entity.getStatus().name());
         resource.setProcessDefinitionId(entity.getProcessDefinitionId());
         resource.setProcessDefinitionKey(entity.getProcessDefinitionKey());
 

@@ -22,9 +22,6 @@ import java.util.List;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.messaging.Message;
 
-/**
- * @author Jamal Kaabi-Mofrad
- */
 public class EventReceiverUtil {
 
     private List<String> events = new ArrayList<>();
@@ -37,7 +34,7 @@ public class EventReceiverUtil {
         return events;
     }
 
-    @JmsListener(destination = "${messaging.to.activemq.topicName}")
+    @JmsListener(destination = "${activiti.cloud.events.adapter.topic.topicName}")
     public void receive(final Message message) {
         events.add((String) message.getPayload());
     }

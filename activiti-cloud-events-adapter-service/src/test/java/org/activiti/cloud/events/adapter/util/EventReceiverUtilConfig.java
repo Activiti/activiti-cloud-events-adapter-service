@@ -24,14 +24,12 @@ import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 
 /**
  * Creates a connection to the ActiveMQ embedded broker.
- *
- * @author Jamal Kaabi-Mofrad
  */
 @Configuration
 @EnableJms
 public class EventReceiverUtilConfig {
 
-    @Value("${messaging.to.activemq.url}")
+    @Value("${activiti.cloud.events.adapter.topic.url}")
     private String brokerUrl;
 
     @Bean

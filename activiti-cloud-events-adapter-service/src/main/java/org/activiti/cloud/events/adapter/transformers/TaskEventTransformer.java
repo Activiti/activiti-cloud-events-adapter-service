@@ -23,9 +23,6 @@ import org.alfresco.event.model.EventV1;
 import org.alfresco.event.model.activiti.TaskResourceV1;
 import org.springframework.stereotype.Component;
 
-/**
- * @author Jamal Kaabi-Mofrad
- */
 @Component
 public class TaskEventTransformer extends AbstractEventTransformer<CloudTaskRuntimeEvent, TaskResourceV1> {
 
@@ -46,8 +43,7 @@ public class TaskEventTransformer extends AbstractEventTransformer<CloudTaskRunt
         resource.setProcessDefinitionId(entity.getProcessDefinitionId());
         resource.setProcessInstanceId(entity.getProcessInstanceId());
         resource.setPriority(entity.getPriority());
-        resource.setStatus(entity.getStatus()
-                    .name());
+        resource.setStatus(entity.getStatus().name());
         resource.setAssignee(entity.getAssignee());
         resource.setCreatedDate(entity.getCreatedDate());
         resource.setClaimedDate(entity.getClaimedDate());

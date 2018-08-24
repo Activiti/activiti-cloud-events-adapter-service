@@ -18,9 +18,6 @@ package org.activiti.cloud.events.adapter.streams;
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.messaging.SubscribableChannel;
 
-/**
- * @author Jamal Kaabi-Mofrad
- */
 public interface EventsAdapterConsumerChannel {
 
     String EVENTS_ADAPTER_CONSUMER = "eventsAdapterConsumer";

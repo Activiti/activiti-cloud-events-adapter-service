@@ -21,9 +21,6 @@ import org.alfresco.event.model.EventV1;
 import org.alfresco.event.model.activiti.SequenceFlowResourceV1;
 import org.springframework.stereotype.Component;
 
-/**
- * @author Jamal Kaabi-Mofrad
- */
 @Component
 public class SequenceFlowEventTransformer extends AbstractEventTransformer<CloudSequenceFlowEvent, SequenceFlowResourceV1> {
 

@@ -22,9 +22,6 @@ import org.activiti.runtime.api.event.CloudRuntimeEvent;
 import org.alfresco.event.model.ResourceV1;
 import org.springframework.stereotype.Component;
 
-/**
- * @author Jamal Kaabi-Mofrad
- */
 @Component
 public class EventTransformerRegistry<T extends CloudRuntimeEvent, R extends ResourceV1> {
 

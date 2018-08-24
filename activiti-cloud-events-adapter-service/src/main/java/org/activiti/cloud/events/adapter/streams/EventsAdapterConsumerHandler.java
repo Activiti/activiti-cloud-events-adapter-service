@@ -15,7 +15,7 @@
  */
 package org.activiti.cloud.events.adapter.streams;
 
-import org.activiti.cloud.events.adapter.jms.JmsEventSender;
+import org.activiti.cloud.events.adapter.EventGateway;
 import org.activiti.cloud.events.adapter.transformers.EventTransformer;
 import org.activiti.cloud.events.adapter.transformers.EventTransformerRegistry;
 import org.activiti.cloud.events.adapter.transformers.GenericEventTransformer;
@@ -29,9 +29,6 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.stereotype.Component;
 
-/**
- * @author Jamal Kaabi-Mofrad
- */
 @Component
 @EnableBinding(EventsAdapterConsumerChannel.class)
 public class EventsAdapterConsumerHandler {
@@ -39,13 +36,14 @@ public class EventsAdapterConsumerHandler {
     private static Logger LOGGER = LoggerFactory.getLogger(EventsAdapterConsumerHandler.class);
 
     private final EventTransformerRegistry<CloudRuntimeEvent, ResourceV1> eventTransformerRegistry;
-    private final JmsEventSender eventSender;
+    private final EventGateway eventGateway;
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     public EventsAdapterConsumerHandler(EventTransformerRegistry<CloudRuntimeEvent, ResourceV1> eventTransformerRegistry,
-                JmsEventSender eventSender) {
+                EventGateway eventGateway) {
         this.eventTransformerRegistry = eventTransformerRegistry;
-        this.eventSender = eventSender;
+        this.eventGateway = eventGateway;
     }
 
     @StreamListener(EventsAdapterConsumerChannel.EVENTS_ADAPTER_CONSUMER)
@@ -63,7 +61,10 @@ public class EventsAdapterConsumerHandler {
                 }
 
                 EventV1<ResourceV1> publicEvent = transformer.transform(event);
-                eventSender.send(publicEvent);
+                if (LOGGER.isDebugEnabled()) {
+                    LOGGER.debug("Sending event: " + publicEvent);
+                }
+                eventGateway.send(publicEvent);
             }
         }
     }
