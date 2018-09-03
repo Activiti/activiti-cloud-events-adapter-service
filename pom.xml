@@ -14,6 +14,7 @@
     <url>http://activiti.org</url>
     <modules>
         <module>activiti-cloud-events-adapter-service</module>
+        <module>activiti-cloud-starter-events-adapter</module>
     </modules>
 
     <scm>

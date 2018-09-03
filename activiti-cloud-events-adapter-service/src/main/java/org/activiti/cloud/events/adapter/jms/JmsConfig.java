@@ -18,10 +18,12 @@ package org.activiti.cloud.events.adapter.jms;
 import javax.jms.Destination;
 
 import org.activiti.cloud.events.adapter.EventGateway;
+import org.activiti.cloud.events.adapter.transformers.EventTransformer;
 import org.alfresco.event.databind.EventObjectMapperFactory;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQTopic;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,6 +42,7 @@ import org.springframework.util.StringUtils;
  * JMS configuration.
  */
 @Configuration
+@ConditionalOnClass(EventTransformer.class)
 @IntegrationComponentScan
 @EnableConfigurationProperties(JmsProperties.class)
 public class JmsConfig {
