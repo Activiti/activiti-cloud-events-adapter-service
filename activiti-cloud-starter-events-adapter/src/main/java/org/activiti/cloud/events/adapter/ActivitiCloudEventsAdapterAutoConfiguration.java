@@ -23,10 +23,10 @@ import org.springframework.integration.config.EnableIntegration;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableIntegration
-public class ActivitiCloudEventsAdapterService {
+public class ActivitiCloudEventsAdapterAutoConfiguration {
 
     public static void main(String[] args) {
-        SpringApplication.run(ActivitiCloudEventsAdapterService.class, args);
+        SpringApplication.run(ActivitiCloudEventsAdapterAutoConfiguration.class, args);
     }
 
 }
