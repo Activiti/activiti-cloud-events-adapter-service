@@ -16,13 +16,13 @@
 
 package org.activiti.cloud.events.adapter.util;
 
+import org.springframework.util.FileCopyUtils;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
-
-import org.springframework.util.FileCopyUtils;
 
 public class TestUtil
 {

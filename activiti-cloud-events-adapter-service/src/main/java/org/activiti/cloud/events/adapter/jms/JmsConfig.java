@@ -42,7 +42,6 @@ import org.springframework.util.StringUtils;
  * JMS configuration.
  */
 @Configuration
-@ConditionalOnClass(EventTransformer.class)
 @IntegrationComponentScan
 @EnableConfigurationProperties(JmsProperties.class)
 public class JmsConfig {
