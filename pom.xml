@@ -38,5 +38,9 @@
                 <enabled>false</enabled>
             </releases>
         </repository>
+        <repository>
+	    <id>alfresco-internal-snapshots</id>
+            <url>https://artifacts.alfresco.com/nexus/content/repositories/snapshots</url>
+        </repository>
     </repositories>
 </project>
