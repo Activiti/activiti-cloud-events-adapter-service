@@ -15,9 +15,9 @@
  */
 package org.activiti.cloud.events.adapter;
 
-import org.activiti.cloud.events.adapter.streams.EventsAdapterConsumerChannel;
 import org.activiti.cloud.events.adapter.util.EventReceiverUtil;
 import org.activiti.cloud.events.adapter.util.TestUtil;
+import org.activiti.cloud.services.events.adapter.streams.EventsAdapterConsumerChannel;
 import org.apache.activemq.junit.EmbeddedActiveMQBroker;
 import org.junit.After;
 import org.junit.AfterClass;

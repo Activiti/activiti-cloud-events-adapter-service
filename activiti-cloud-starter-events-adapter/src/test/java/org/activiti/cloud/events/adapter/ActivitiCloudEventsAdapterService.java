@@ -18,9 +18,11 @@ package org.activiti.cloud.events.adapter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.integration.config.EnableIntegration;
 
 @SpringBootApplication
+@ComponentScan(basePackages = {"org.activiti.cloud.services","org.activiti.cloud.alfresco","org.springframework.integration.jms"})
 @EnableDiscoveryClient
 @EnableIntegration
 public class ActivitiCloudEventsAdapterService {
