@@ -23,13 +23,17 @@ import java.lang.annotation.Target;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.integration.annotation.IntegrationComponentScan;
+import org.springframework.integration.config.EnableIntegration;
 
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @EntityScan(basePackages = {"org.activiti.cloud.services.events.adapter"})
 @Inherited
+@EnableDiscoveryClient
 @EnableAutoConfiguration
+@EnableIntegration
 @IntegrationComponentScan("org.activiti.cloud.services.events.adapter")
 public @interface EnableActivitiEventAdapter {
 
