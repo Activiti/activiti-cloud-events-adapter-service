@@ -23,10 +23,10 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableActivitiEventAdapter
 @ComponentScan({"org.activiti.cloud","org.activiti.cloud.events","org.springframework.integration.jms"})
-public class ActivitiCloudEventsAdapterService {
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(ActivitiCloudEventsAdapterService.class, args);
+        SpringApplication.run(Application.class, args);
     }
 
 }
